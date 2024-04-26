@@ -1,6 +1,6 @@
 # Langchain Pandas Dataframe Agent using Local Model
 
-> NOTE: The notebook was run using Google Colab A100 (40GB). The `meta-llama/Llama-2-13b-hf` model requires ~36GB with 4-bit quantization.
+> NOTE: The notebook was run using Google Colab A100 (40GB). The `meta-llama/Llama-2-13b-hf` model requires ~36GB GPU memory with 4-bit quantization.
 
 ### Installation
 
