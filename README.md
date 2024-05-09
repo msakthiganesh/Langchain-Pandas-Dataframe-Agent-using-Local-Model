@@ -10,6 +10,7 @@
 !pip install -qU transformers==4.31.0 accelerate==0.21.0 einops==0.6.1 langchain==0.0.240 xformers==0.0.20 bitsandbytes==0.41.0
 
 ```
+> Notebook: Approach_1_Langchain_PandasDFAgent_Llama2_70b.ipynb
 
 ### Tasks Accomplished
 
@@ -19,8 +20,10 @@
    
 - [x] `custom_create_pandas_dataframe_agent` to use local LLMs with Langchain
 
+- [ ] Unable to use RAGAS, LangSmith due to Out of Memory Issue 
 
-### To do
+
+### Challenges
 
 - [ ] Parse output to JSON instead of text.
    
@@ -44,8 +47,34 @@
 
 ## Approach 2 - Using RAG Pipeline using CSV Loader, VectorDB, and RetrievalQA Chain with Local Model
 
-> Work in Progress
+> Notebook: Approach_2_RetrievalQAChain.ipynb
+
+### Task Accomplished
+
+- [x] Utilized embedding model to embed the data.
+- [x] Utilized vector store to save the embedding vectors.
+- [x] Utilized local embedding and LLM.
+- [ ] Pipeline Evaluation (did not pursue evaluation as the results were very bad due to chunking)
+
+### Challenges
+
+As expected, the standard RAG pipeline using RetrievalQAChain doesn't perform well as the document/CSV is chunked leading to loss of full context. This approach would be better suited for unstructured data like text.
 
 
 ## Approach 3 - Using Knowledge Graphs to improve the accuracy of the RAG pipeline with Local model
-> Work in Progress
+
+> Notebook: Approach_3_KnowledgeGraph_OpenAI.ipynb
+
+### Task Accomplished
+
+- [x] Setup Neo4j locally and on cloud (free tier) 
+- [x] Created Knowledge Graph (Neo4j) from the CSV with entities and their relationships.
+- [x] Utilized GraphCypherQAChain.
+
+![Neo4j Graph](https://github.com/msakthiganesh/Langchain-Pandas-Dataframe-Agent-using-Local-Model/blob/main/neo4j_graph.png)
+
+### Challenges
+
+- Could not find proper documentation for urtilizing local LLMs along with GraphCypherQAChain (tried `meta-llama/Llama-2-7b-chat-hf`, `Meta-Llama-3-8B-Instruct.Q4_0`)
+- Local LLMs (other than OpenAI's ChatGPT) generates invalid Cypher Statement.
+- [ ] Pipeline Evaluation (did not pursue evaluation as the model used was OpenAI's ChatGPT)
